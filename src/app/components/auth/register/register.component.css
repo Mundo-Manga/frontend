@@ -1,0 +1,44 @@
+.conteiner-form {
+  background: #fff;
+  display: flex;
+}
+#signWelcome {
+  color: #fff;
+  background: #454ade;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  padding: 0 30px;
+}
+h1 {
+  display: inline-block;
+  margin: auto;
+}
+h1 > b {
+  color: #75dddd;
+}
+
+#formRegister {
+  background: #fff;
+  width: 350px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+}
+.btnForm {
+  padding: 5px 10px;
+  width: max-content;
+  color: #fff;
+  background: #454ade;
+  cursor: pointer;
+  border: none;
+  margin-top: 5px;
+  font-size: 17px;
+}
+.conteiner-nameAdress {
+  display: flex;
+  gap: 5px;
+}
