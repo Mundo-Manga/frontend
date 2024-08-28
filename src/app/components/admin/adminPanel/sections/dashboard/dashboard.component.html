@@ -1,0 +1,140 @@
+<h2>Dashboard</h2>
+<div id="conteiner-box">
+  <div id="box-detailsPedidos">
+    <div class="box">
+      <h3>Pedidos en total</h3>
+      <p class="box-details">Agosto</p>
+      <p class="box-detailsNumberPedidos">132</p>
+    </div>
+    <div class="box">
+      <h3>Pedidos aprobados</h3>
+      <p class="box-details">Agosto</p>
+      <p class="box-detailsNumberPedidos">121</p>
+    </div>
+    <div class="box">
+      <h3>Monto total</h3>
+      <p class="box-details">Agosto</p>
+      <p class="box-detailsNumber">$51.294.111,14</p>
+    </div>
+  </div>
+  <div class="box" id="box-topProducto">
+    <h3>Productos mas vendidos</h3>
+    <p class="box-details">Ultimo mes</p>
+    <ol id="topProducto-list">
+      <li>Pelotas de futbol</li>
+      <li>Guinda de rugby</li>
+      <li>Raqueta de tennis</li>
+    </ol>
+  </div>
+  <div class="box" id="box-pedidosPending">
+    <h3>Pedidos pendientes</h3>
+    <span id="pedidosPending-number">3</span>
+    <a routerLink="/admin/pedidos">Ver pedidos pro</a>
+  </div>
+  <app-form-add-product id="box-formAddProduct"></app-form-add-product>
+  <div class="box" id="box-tableProducto" (scroll)="onScroll($event)">
+    <h3 style="padding: 10px 0; padding-left: 10px">
+      Lista de productos
+      <svg
+        id="refreshIcon"
+        (click)="refreshProductList()"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-reload"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path
+          d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747"
+        />
+        <path d="M20 4v5h-5" />
+      </svg>
+    </h3>
+    @if (productList.length > 0) {
+
+    <table id="tableProducto-table">
+      <thead>
+        <tr>
+          <th id="thead-code">#</th>
+          <th id="thead-name">Nombre</th>
+          <th id="thead-price">Precio</th>
+          <th id="thead-categories">Categorias</th>
+          <th id="thead-stock">Stock</th>
+          <th id="thead-action"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (item of productList;track item.id){
+        <tr>
+          <td>{{ item.code_producto }}</td>
+          <td>{{ item.nombre }}</td>
+          <td
+            style="width: 100px; display: flex; justify-content: space-between"
+          >
+            <span>$</span><span>{{ item.price }}</span>
+          </td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.stock }}</td>
+          <td>
+            <button class="btn btn-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"
+                />
+                <path d="M13.5 6.5l4 4" />
+              </svg>
+            </button>
+            <button
+              class="btn btn-danger"
+              (click)="deleteProduct(item.code_producto)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-trash"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 7l16 0" />
+                <path d="M10 11l0 6" />
+                <path d="M14 11l0 6" />
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    } @else {
+
+    <div style="text-align: center">No hay productos</div>
+    }
+  </div>
+</div>

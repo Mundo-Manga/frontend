@@ -1,0 +1,51 @@
+<h2>Lista de pedidos pendientes</h2>
+<div id="conteinerPedidos">
+  <div *ngFor="let pedido of pedidos" class="pedidoCard">
+    <h4 class="pedidoCard-title">{{ pedido.code }}</h4>
+    <span
+      [ngClass]="{
+      badge: true,
+      pendiente: pedido.status == 'Pendiente',
+      'en-viaje': pedido.status == 'En viaje',
+      'despachado': pedido.status == 'Despachado',
+      'entregado': pedido.status == 'Entregado',
+    }"
+      >{{ pedido.status }}</span
+    >
+    <div class="conteinerDetailas">
+      <div id="conteiner-detailsContact">
+        <span><b>Fecha de pedido: </b>{{ pedido.fecha }}</span>
+        <span><b>Nombre: </b>{{ pedido.nombre }}</span>
+        <span><b>Apellido: </b>{{ pedido.apellido }}</span>
+        <span><b>Email: </b>{{ pedido.email }}</span>
+        <span><b>Telefono: </b>{{ pedido.telefono }}</span>
+      </div>
+      <div id="conteiner-detailsPrice">
+        <span id="stick-dashed"></span>
+        <table class="pedidoCard-table">
+          <tbody>
+            <tr *ngFor="let item of pedido.detailsprice">
+              <td>{{ item.cantidad }}</td>
+              <td>x</td>
+              <td class="th-products">{{ item.name }}</td>
+              <td>
+                <span>$</span> <span>{{ item.precioUnitario }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <span id="stick-dashed"></span>
+        <div id="conteiner-total">
+          <h3>Total</h3>
+          <span>${{ pedido.totalPrice }}</span>
+        </div>
+        <a
+          class="seeAllDetailsLink"
+          routerLink="/admin/moreDetails"
+          [queryParams]="{ code: pedido.code }"
+          >Ver todos los detalles</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

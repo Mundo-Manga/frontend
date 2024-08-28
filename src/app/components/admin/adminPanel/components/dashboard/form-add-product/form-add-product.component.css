@@ -1,0 +1,127 @@
+.box {
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 8px;
+}
+h3 {
+  color: #454ade;
+  font-size: 25px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+label {
+  margin: 0;
+}
+#form-addProducto {
+  display: flex;
+  flex-direction: column;
+}
+#addProducto-selectConteiner > button {
+  border: none;
+  background: #454ade;
+  color: #fff;
+  padding: 2px 5px;
+}
+
+#addProducto-selectConteiner {
+  position: absolute;
+  background: #ccc;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  height: 0;
+  max-height: 0;
+  overflow: hidden;
+  padding: 5px;
+}
+#addProducto-selectConteiner.active {
+  height: max-content;
+  max-height: max-content;
+}
+#form-code {
+  font-size: 30px;
+  margin: 0;
+}
+#form-conteinerCategories {
+  border: 1px solid #000;
+  padding: 2px 10px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.categoriaSelect {
+  cursor: default;
+  padding: 0 5px;
+  background: blue;
+}
+.btnForm {
+  padding: 5px 10px;
+  width: max-content;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  margin-top: 5px;
+  background: #454ade;
+  font-size: 17px;
+}
+.btnDisable {
+  background: #7478e4;
+  cursor: default;
+}
+
+#btn-AddCategorie:hover {
+  background: #383dc0;
+}
+
+#form-conteinerNumber {
+  display: flex;
+  gap: 5px;
+  & div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#form-textArea {
+  height: 88px;
+  resize: none;
+}
+#form-btnSubmit {
+  background: #454ade;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  padding: 5px;
+  width: max-content;
+  margin-top: 10px;
+}
+#form-btnSubmit:focus {
+  outline: 3px solid #292c8a;
+}
+
+.error {
+  margin: 0;
+  color: #f30f0f;
+}
+.form-input {
+  padding: 1px 8px;
+  border: 2px solid #dcddf9;
+  border-radius: 5px;
+  transition: all 0.1s;
+}
+.form-input:focus {
+  border-color: #8588ea;
+  outline: none;
+}
+
+.ng-valid:not(form).ng-touched {
+  box-shadow: inset 5px 0 0 0 #0f0;
+}
+.ng-invalid:not(form).ng-touched {
+  box-shadow: inset 5px 0 0 0 #f00;
+}

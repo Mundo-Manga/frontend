@@ -2,13 +2,78 @@
   <div id="signWelcome">
     <h1>Bienvenido al super mega que yo <b>e-comerce</b></h1>
   </div>
-  <form id="formLogin">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" id="formLogin">
     <h2>Iniciar sesion</h2>
-    <label class="form-label" for="">Nombre de usuario</label>
-    <input class="form-input" type="text" />
-    <label class="form-label" for="">Contraseña</label>
-    <input class="form-input" type="password" />
-    <button class="btnForm" type="submit">Iniciar sesion</button>
+    <label class="form-label" for="username">Nombre de usuario</label>
+    <input class="form-input" formControlName="username" type="text" />
+
+    <div *ngIf="f.username.touched && f.username.invalid" class="error-message">
+      <p class="error" *ngIf="f.username.errors?.['required']">
+        Estos campos son requeridos.
+      </p>
+      <p class="error" *ngIf="f.username.errors?.['nonExistingUser']">
+        Este usuario no existe.
+      </p>
+    </div>
+    <label class="form-label" for="password" style="display: flex; gap: 5px"
+      >Contraseña
+      <div (click)="setSeePassword()" style="cursor: pointer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-eye-closed"
+          *ngIf="!seePassword"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M21 9c-2.4 2.667 -5.4 4 -9 4c-3.6 0 -6.6 -1.333 -9 -4" />
+          <path d="M3 15l2.5 -3.8" />
+          <path d="M21 14.976l-2.492 -3.776" />
+          <path d="M9 17l.5 -4" />
+          <path d="M15 17l-.5 -4" />
+        </svg>
+        <svg
+          *ngIf="seePassword"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+          <path
+            d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
+          />
+        </svg></div
+    ></label>
+    <input
+      class="form-input"
+      [type]="seePassword ? 'text' : 'password'"
+      formControlName="password"
+    />
+    <div *ngIf="f.password.touched && f.password.invalid" class="error-message">
+      <p class="error" *ngIf="f.password.errors?.['required']">
+        Estos campos son requeridos.
+      </p>
+      <p class="error" *ngIf="f.password.errors?.['passwordIncorrect']">
+        La contraseña es incorrecta
+      </p>
+    </div>
+    <button [ngClass]="{ btnForm: true, btnDisable: !btnActive }" type="submit">
+      Iniciar sesion
+    </button>
     <p>
       ¿No tienes cuenta?
       <a class="link" routerLink="/auth/register">Registrate</a>

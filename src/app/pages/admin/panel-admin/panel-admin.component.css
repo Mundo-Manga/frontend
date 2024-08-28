@@ -1,0 +1,89 @@
+#admin {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+#navAdmin {
+  width: 250px;
+  height: 100%;
+  background: #1f202b;
+}
+#navAdmin > h1 {
+  padding: 20px 10px;
+  color: #fff;
+  background: #454ade;
+}
+#navAdmin-linksConteiner {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  gap: 5px;
+}
+.navAdmin-link {
+  padding: 10px;
+  text-decoration: none;
+  color: #656677;
+  border-radius: 5px;
+}
+.navAdmin-link:hover {
+  background: #65667721;
+}
+.navAdmin-link.active {
+  color: #cacaca;
+  background: #6566773a;
+}
+
+.navAdmin-stick {
+  position: relative;
+  display: inline-block;
+  background: #303147;
+  width: 100%;
+  height: 2px;
+}
+#window {
+  padding: 10px;
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  background: #f1f1f1;
+}
+
+#navAdmin-btn {
+  all: unset;
+  position: relative;
+  padding: 10px;
+  text-decoration: none;
+  color: #656677;
+  background: transparent;
+  border-radius: 5px;
+}
+#navAdmin-btn:hover {
+  background: #65667721;
+}
+#navAdmin-btn.active {
+  color: #cacaca;
+  background: #6566773a;
+}
+.conteiner-pedidosLinks {
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  padding-left: 10px;
+  flex-direction: column;
+  gap: 5px;
+  transition: 0.2s;
+}
+.conteiner-pedidosLinks.active {
+  height: 150px;
+}
+#icon-arrow {
+  position: absolute;
+  left: auto;
+  top: 50%;
+  transition: 0.3s;
+  transform: translateY(-50%) rotate(0deg);
+  right: 10px;
+}
+#icon-arrow.active {
+  transform: translateY(-50%) rotate(180deg);
+}
