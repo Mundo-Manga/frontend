@@ -16,9 +16,10 @@ import { verifyRoleGuard } from './guards/role/verify-role.guard';
 import { ShopComponent } from './pages/shop/shop.component';
 import { AccountComponent } from './pages/account/account.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: HomeComponent },
   {
     path: 'auth',
     component: AuthComponent,
