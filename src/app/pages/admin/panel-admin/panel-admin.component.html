@@ -1,0 +1,86 @@
+<div id="admin">
+  <nav id="navAdmin">
+    <h1 class="fs-2">Admin panel</h1>
+    <div id="navAdmin-linksConteiner">
+      <span class="navAdmin-stick"></span>
+      <a
+        [ngClass]="{ 'navAdmin-link': true, active: currentUrl == '/admin' }"
+        routerLink="/admin"
+        >Dashboard</a
+      >
+      <span class="navAdmin-stick"></span>
+      <button
+        id="navAdmin-btn"
+        [ngClass]="{
+          active: currentUrl == '/admin/pedidos'
+        }"
+        (click)="cambiarActive()"
+      >
+        Pedidos
+        <svg
+          id="icon-arrow"
+          [ngClass]="{ active: isActive }"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-up"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M6 15l6 -6l6 6" />
+        </svg>
+      </button>
+      <div [ngClass]="{ 'conteiner-pedidosLinks': true, active: isActive }">
+        <a
+          [ngClass]="{
+            'navAdmin-link': true,
+          }"
+          routerLink="/admin/pedidos"
+          >Despachados
+        </a>
+        <a
+          [ngClass]="{
+            'navAdmin-link': true,
+          }"
+          routerLink="/admin/pedidos"
+          >Pendientes
+        </a>
+        <a
+          [ngClass]="{
+            'navAdmin-link': true,
+            active: currentUrl == '/admin/pedidos'
+          }"
+          routerLink="/admin/pedidos"
+          >Todos
+        </a>
+      </div>
+      <span class="navAdmin-stick"></span>
+      <a
+        [ngClass]="{
+          'navAdmin-link': true,
+          active: currentUrl == '/admin/usuarios'
+        }"
+        routerLink="/admin/usuarios"
+        >Usuarios</a
+      >
+      <span class="navAdmin-stick"></span>
+      <a
+        [ngClass]="{
+          'navAdmin-link': true
+        }"
+        routerLink="/shop"
+        >Tienda</a
+      >
+      <span class="navAdmin-stick"></span>
+    </div>
+    <button id="btn-Logout" (click)="logout()">Cerrar sesion</button>
+  </nav>
+  <div id="window">
+    <router-outlet></router-outlet>
+  </div>
+</div>

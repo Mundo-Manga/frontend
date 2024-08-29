@@ -1,0 +1,71 @@
+<h2>Lista de pedidos pendientes</h2>
+<div *ngIf="load" class="loader">Cargando...</div>
+<div id="conteinerPedidos" *ngIf="!load">
+  <div *ngFor="let pedido of pedidos" class="pedidoCard">
+    <h4 class="pedidoCard-title">{{ pedido.code }}</h4>
+    <span
+      [ngClass]="{
+      badge: true,
+      pendiente: pedido.estado == 'pending',
+      'en-viaje': pedido.estado == 'En viaje',
+      'despachado': pedido.estado == 'Despachado',
+      'entregado': pedido.estado == 'confirm',
+    }"
+      >{{
+        pedido.estado === "pending"
+          ? "pendiente"
+          : pedido.estado === "confirm"
+          ? "Confirmado"
+          : ""
+      }}</span
+    >
+    <div class="conteinerDetailas">
+      <div id="conteiner-detailsContact">
+        <span><b>Fecha de pedido: </b>{{ pedido.fecha }}</span>
+        <span><b>Nombre: </b>{{ pedido.userInfo.nombre }}</span>
+        <span><b>Apellido: </b>{{ pedido.userInfo.apellido }}</span>
+        <span><b>Email: </b>{{ pedido.userInfo.correo }}</span>
+      </div>
+      <div id="conteiner-detailsPrice">
+        <span id="stick-dashed"></span>
+        <div id="boxTable">
+          <table class="pedidoCard-table">
+            <tbody>
+              <tr *ngFor="let item of pedido.detalles">
+                <td class="th-products">{{ item.productoname }}</td>
+                <td>{{ item.cantidad }}</td>
+                <td>x</td>
+                <td>
+                  <span>$</span> <span>{{ item.precio }}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <span id="stick-dashed"></span>
+        <div id="conteiner-total">
+          <h3>Total</h3>
+          <span>${{ pedido.monto_total }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between">
+          <button
+            *ngIf="pedido.estado == 'pending'"
+            class="btn btnConfirm"
+            (click)="confirmOrder(pedido.id)"
+          >
+            Confirmar
+          </button>
+          <button class="btn btnDelete" (click)="deleteOrder(pedido.id)">
+            Borrar
+          </button>
+        </div>
+        <!-- <a
+            class="seeAllDetailsLink"
+            routerLink="/admin/moreDetails"
+            [queryParams]="{ code: pedido.id }"
+            >Ver todos los detalles</a
+          > -->
+      </div>
+    </div>
+  </div>
+</div>

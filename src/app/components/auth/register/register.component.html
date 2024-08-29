@@ -1,30 +1,141 @@
-<div class="conteiner-form">
-  <form id="formRegister">
+<div class="container-form">
+  <form [formGroup]="registerForm" id="formRegister" (ngSubmit)="register()">
     <h2>Registrate</h2>
-    <label class="form-label" for="">Email</label>
-    <input class="form-input" type="text" />
-    <label class="form-label" for="">Nombre de usuario</label>
-    <input class="form-input" type="text" />
-    <div class="conteiner-nameAdress">
+
+    <label class="form-label" for="email">Email</label>
+    <input class="form-input" formControlName="email" type="text" />
+    <div *ngIf="f.email.touched && f.email.invalid" class="error-message">
+      <p class="error" *ngIf="f.email.errors?.['required']">
+        Este campo es requerido.
+      </p>
+      <p class="error" *ngIf="f.email.errors?.['email']">
+        El email no es válido.
+      </p>
+      <p class="error" *ngIf="f.email.errors?.['emailExists']">
+        Ya hay una cuenta registrada con este correo.
+      </p>
+    </div>
+
+    <label class="form-label" for="username">Nombre de usuario</label>
+    <input class="form-input" type="text" formControlName="username" />
+    <div *ngIf="f.username.touched && f.username.invalid" class="error-message">
+      <p class="error" *ngIf="f.username.errors?.['required']">
+        Este campo es requerido.
+      </p>
+      <p class="error" *ngIf="f.username.errors?.['usernameExists']">
+        Ya existe una cuenta con este nombre.
+      </p>
+    </div>
+
+    <div class="container-nameSurname">
       <div>
-        <label class="form-label" for="">Nombre</label>
-        <input class="form-input" type="text" />
+        <label class="form-label" for="name">Nombre</label>
+        <input class="form-input" type="text" formControlName="name" />
       </div>
       <div>
-        <label class="form-label" for="">Apellido</label>
-        <input class="form-input" type="text" />
+        <label class="form-label" for="surname">Apellido</label>
+        <input class="form-input" type="text" formControlName="surname" />
       </div>
     </div>
-    <label class="form-label" for="">Contraseña</label>
-    <input class="form-input" type="password" />
-    <label class="form-label" for="">Confirma contraseña</label>
-    <input class="form-input" type="password" />
-    <button class="btnForm" type="submit">registrarse</button>
+    <div
+      *ngIf="
+        (f.name.touched && f.name.invalid) ||
+        (f.surname.touched && f.surname.invalid)
+      "
+      class="error-message"
+    >
+      <p
+        class="error"
+        *ngIf="f.name.errors?.['required'] || f.surname.errors?.['required']"
+      >
+        Estos campos son requeridos.
+      </p>
+    </div>
+
+    <label class="form-label" for="password" style="display: flex; gap: 5px"
+      >Contraseña
+      <div (click)="setSeePassword()" style="cursor: pointer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-eye-closed"
+          *ngIf="!seePassword"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M21 9c-2.4 2.667 -5.4 4 -9 4c-3.6 0 -6.6 -1.333 -9 -4" />
+          <path d="M3 15l2.5 -3.8" />
+          <path d="M21 14.976l-2.492 -3.776" />
+          <path d="M9 17l.5 -4" />
+          <path d="M15 17l-.5 -4" />
+        </svg>
+        <svg
+          *ngIf="seePassword"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+          <path
+            d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
+          />
+        </svg></div
+    ></label>
+    <input
+      class="form-input"
+      [type]="seePassword ? 'text' : 'password'"
+      formControlName="password"
+    />
+    <div *ngIf="f.password.touched && f.password.invalid" class="error-message">
+      <p class="error" *ngIf="f.password.errors?.['required']">
+        Este campo es requerido.
+      </p>
+
+      <p class="error" *ngIf="f.password.errors?.['minlength']">
+        La contraseña debe tener al menos 5 caracteres.
+      </p>
+    </div>
+
+    <label class="form-label" for="confirPassword">Confirmar contraseña</label>
+    <input
+      class="form-input"
+      [type]="seePassword ? 'text' : 'password'"
+      formControlName="confirPassword"
+    />
+
+    <div
+      *ngIf="
+        registerForm.hasError('passwordsMismatch') && f.confirPassword.touched
+      "
+      class="error-message"
+    >
+      <p class="error">Las contraseñas no coinciden.</p>
+    </div>
+
+    <button [ngClass]="{ btnForm: true, btnDisable: !btnActive }" type="submit">
+      Registrarse
+    </button>
+
     <p>
       ¿Ya tienes cuenta? <a class="link" routerLink="/auth">Inicia sesion</a>
     </p>
   </form>
+
   <div id="signWelcome">
-    <h1>Bienvenido a el super mega hiper archi <b>e-comerce</b></h1>
+    <h1>Bienvenido al super mega hiper archi <b>e-comerce</b></h1>
   </div>
 </div>

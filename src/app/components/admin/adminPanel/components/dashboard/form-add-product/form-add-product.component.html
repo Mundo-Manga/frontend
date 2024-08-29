@@ -1,0 +1,124 @@
+<div class="box">
+  <h3>Agregar producto</h3>
+  <form
+    [formGroup]="productForm"
+    (ngSubmit)="addProduct()"
+    id="form-addProducto"
+  >
+    <label for="">Codigo</label>
+    <p id="form-code">{{ codigoProducto }}</p>
+    <label for="name">Nombre</label>
+    <input type="text" class="form-input" formControlName="name" />
+    <div *ngIf="f.name.touched && f.name.invalid" class="error-message">
+      <p class="error" *ngIf="f.name.errors?.['required']">
+        Este campo es requerido.
+      </p>
+    </div>
+    <div id="form-conteinerNumber">
+      <div>
+        <label for="stock">Stock</label>
+        <input
+          formControlName="stock"
+          type="number"
+          class="form-input"
+          min="1"
+        />
+      </div>
+      <div>
+        <label for="price">Precio unitario</label>
+        <input
+          type="number"
+          class="form-input"
+          formControlName="price"
+          min="1"
+        />
+      </div>
+    </div>
+    <div
+      *ngIf="
+        (f.price.touched && f.price.invalid) ||
+        (f.stock.touched && f.stock.invalid)
+      "
+      class="error-message"
+    >
+      <p
+        class="error"
+        *ngIf="f.price.errors?.['required'] || f.stock.errors?.['required']"
+      >
+        Estos campos son requeridos.
+      </p>
+    </div>
+    <label for="">Deporte</label>
+    <select name="" id="" class="form-input">
+      <option value="">Otro</option>
+      <option value="" *ngFor="let deporte of deportes">
+        {{ deporte }}
+      </option>
+    </select>
+    <label for="description">Descripcion</label>
+    <textarea
+      id="form-textArea"
+      class="form-input"
+      formControlName="description"
+    ></textarea>
+    <button [ngClass]="{ btnForm: true, btnDisable: !btnActive }" type="submit">
+      Agregar
+    </button>
+  </form>
+</div>
+
+<!-- 
+Categoria select
+<label for="">Categorias</label>
+<div id="form-conteinerCategories">
+  <div *ngFor="let categoria of categories" class="pedidoCard">
+    <div class="categoriaSelect" (click)="removeCategories(categoria)">
+      {{ categoria }}
+      <svg
+        style="cursor: pointer"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
+      </svg>
+    </div>
+  </div>
+  <button type="button" id="btn-AddCategorie" (click)="showSelect()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 5l0 14" />
+      <path d="M5 12l14 0" />
+    </svg>
+  </button>
+</div>
+<div style="position: relative">
+  <div
+    id="addProducto-selectConteiner"
+    [ngClass]="{ active: isActiveShowSelect }"
+  >
+    <button type="button" (click)="addCategories('Rugby')">Rugby</button>
+    <button type="button" (click)="addCategories('Futbol')">Futbol</button>
+    <button type="button" (click)="addCategories('voley')">voley</button>
+  </div>
+</div> -->

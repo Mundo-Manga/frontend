@@ -1,0 +1,39 @@
+nav {
+  width: 100%;
+  background: #454ade;
+  padding: 10px 30px;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+svg {
+  height: 40px;
+  width: 40px;
+}
+#linkAdmin {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 2px 5px;
+  border-radius: 8px;
+  background: #ffffff25;
+}
+#linkAdmin:hover {
+  background: #ffffff2a;
+}
+#btn-Logout {
+  background: none;
+  border: solid 3px #d10606;
+  color: #d10606;
+  font-weight: 600;
+  padding: 2px 5px;
+}
+a {
+  color: #fff;
+}
+a:hover {
+  color: #e0e0e0;
+}
