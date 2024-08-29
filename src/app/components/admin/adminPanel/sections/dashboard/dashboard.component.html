@@ -4,12 +4,18 @@
     <div class="box">
       <h3>Pedidos en total</h3>
       <p class="box-details">Agosto</p>
-      <p class="box-detailsNumberPedidos">132</p>
+      <div class="box-detailsNumberPedidos">
+        <div *ngIf="load" class="loader"></div>
+        {{ countTypeOrder.totalOrders }}
+      </div>
     </div>
     <div class="box">
       <h3>Pedidos aprobados</h3>
       <p class="box-details">Agosto</p>
-      <p class="box-detailsNumberPedidos">121</p>
+      <div class="box-detailsNumberPedidos">
+        <div *ngIf="load" class="loader"></div>
+        {{ countTypeOrder.confirmedOrders }}
+      </div>
     </div>
     <div class="box">
       <h3>Monto total</h3>
@@ -28,7 +34,10 @@
   </div>
   <div class="box" id="box-pedidosPending">
     <h3>Pedidos pendientes</h3>
-    <span id="pedidosPending-number">3</span>
+    <div id="pedidosPending-number">
+      <div *ngIf="load" class="loader"></div>
+      {{ countTypeOrder.pendingOrders }}
+    </div>
     <a routerLink="/admin/pedidos">Ver pedidos pro</a>
   </div>
   <app-form-add-product id="box-formAddProduct"></app-form-add-product>

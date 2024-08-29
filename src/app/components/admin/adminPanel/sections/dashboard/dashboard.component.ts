@@ -6,6 +6,7 @@ import { CRUDProductService } from '../../../../../services/product/crud-product
 import { elementAt } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { table } from 'console';
+import { OrderService } from '../../../../../services/order/order.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ import { table } from 'console';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
+  load = true;
   productList = [
     {
       code_producto: '',
@@ -28,11 +30,23 @@ export class DashboardComponent {
   indexPage = 1;
   loading = false;
 
+  countTypeOrder = {
+    totalOrders: undefined,
+    pendingOrders: undefined,
+    confirmedOrders: undefined,
+  };
   constructor(
     private serviceProduct: CRUDProductService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private serviceOrder: OrderService
   ) {
     this.loadInitialProducts();
+    serviceOrder.getCountOrder().subscribe({
+      next: (data) => {
+        this.countTypeOrder = data;
+        this.load = false;
+      },
+    });
   }
 
   loadInitialProducts() {

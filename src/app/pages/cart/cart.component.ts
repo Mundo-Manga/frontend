@@ -4,15 +4,18 @@ import { error } from 'console';
 import { HeaderShopComponent } from '../../components/shop/header-shop/header-shop.component';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { OrderService } from '../../services/order/order.service';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [HeaderShopComponent, RouterLink],
+  imports: [HeaderShopComponent, NgIf, NgClass, RouterLink],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
 export class CartComponent {
+  load = true;
   detallesCarrito = [
     {
       id: 0,
@@ -45,9 +48,14 @@ export class CartComponent {
   );
   constructor(
     private cartService: CartService,
+    private orderService: OrderService,
     private toastService: ToastrService
   ) {
-    cartService.getCart().subscribe({
+    this.getCart();
+  }
+  getCart() {
+    this.load = true;
+    this.cartService.getCart().subscribe({
       next: (data) => {
         this.detallesCarrito = data.detalles.map((item: any) => ({
           id: item.id,
@@ -65,27 +73,26 @@ export class CartComponent {
       error: (err) => {
         console.error({ err });
       },
+      complete: () => (this.load = false),
     });
   }
+  btnActive = true;
   createOrderCart() {
-    this.cartService.createOrder(this.detallesCarrito, this.total).subscribe({
-      next: (data) => {
-        this.detallesCarrito = [
-          {
-            id: 0,
-            cant_producto: 0,
-            descripcion: '',
-            precio: 0,
-            subtotal: 0,
-            nombre: '',
+    if (this.btnActive) {
+      this.btnActive = false;
+      this.orderService
+        .createOrder(this.detallesCarrito, this.total)
+        .subscribe({
+          next: (data) => {
+            this.getCart();
+            this.total = 0;
+            this.toastService.success('Yupiii', 'Tu pedido ya fue cargado');
           },
-        ];
-        this.total = 0;
-        this.toastService.success('Yupiii', 'Tu pedido ya fue cargado');
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
+          error: (err) => {
+            console.error(err);
+          },
+          complete: () => (this.btnActive = true),
+        });
+    }
   }
 }

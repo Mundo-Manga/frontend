@@ -5,15 +5,17 @@ import { CRUDProductService } from '../../services/product/crud-product.service'
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormsModule, NgModel } from '@angular/forms';
 import { CartService } from '../../services/cart/cart.service';
+import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [NavShopComponent, HeaderShopComponent, FormsModule],
+  imports: [NavShopComponent, NgClass, NgIf, HeaderShopComponent, FormsModule],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css',
 })
 export class ShopComponent {
+  load = true;
   productList = [
     {
       code_producto: '',
@@ -40,6 +42,7 @@ export class ShopComponent {
       next: (data) => {
         this.productList = data.productos;
         this.indexPage++;
+        this.load = false;
       },
     });
   }
@@ -78,17 +81,25 @@ export class ShopComponent {
   trackById(index: number, item: any): number {
     return item.id;
   }
+  btnActive = true;
   addCart(code: string, name: string) {
-    const input = document.getElementById(
-      `cantProduct_${code}`
-    ) as HTMLInputElement;
-    this.cartService.addCart(code, parseInt(input.value)).subscribe({
-      next: (data) => {
-        this.toastService.success(`Producto ${name} agregado al carrito`);
-      },
-      error: (err) => {
-        console.error({ err });
-      },
-    });
+    if (this.btnActive) {
+      this.btnActive = false;
+
+      const input = document.getElementById(
+        `cantProduct_${code}`
+      ) as HTMLInputElement;
+      this.cartService.addCart(code, parseInt(input.value)).subscribe({
+        next: (data) => {
+          this.toastService.success(`Producto ${name} agregado al carrito`);
+        },
+        error: (err) => {
+          console.error({ err });
+        },
+        complete: () => {
+          this.btnActive = true;
+        },
+      });
+    }
   }
 }

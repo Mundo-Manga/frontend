@@ -1,187 +1,65 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { OrderService } from '../../../../../services/order/order.service';
 
 @Component({
   selector: 'app-pedidos',
   standalone: true,
-  imports: [NgFor, NgClass, RouterLink],
+  imports: [NgFor, NgClass, NgIf, RouterLink],
   templateUrl: './pedidos.component.html',
   styleUrl: './pedidos.component.css',
 })
 export class PedidosComponent {
+  confirmOrder(idOrder: string) {
+    console.log(idOrder);
+    this.orderService.confirmOrder(parseInt(idOrder)).subscribe({
+      next: () => {
+        this.getOrder();
+      },
+    });
+  }
+  deleteOrder(idOrder: string) {
+    console.log(idOrder);
+    this.orderService.deleteOrder(parseInt(idOrder)).subscribe({
+      next: () => {
+        this.getOrder();
+      },
+    });
+  }
+  load = true;
   pedidos = [
     {
-      code: 'AS3X-T1SA',
-      fecha: '20/8/2024',
-      status: 'Pendiente',
-      nombre: 'Leonel',
-      apellido: 'Gonzalez',
-      email: 'example123@gmail.com',
-      telefono: '+123234345',
-      detailsprice: [
-        { cantidad: 2, precioUnitario: 120, name: 'Botas de Senderismo' },
-        { cantidad: 1, precioUnitario: 80, name: 'Mochila de Montaña' },
-        { cantidad: 3, precioUnitario: 60, name: 'Saco de Dormir' },
-      ],
-      totalPrice: 512,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '17/8/2024',
-      status: 'En viaje',
-      nombre: 'Ana',
-      apellido: 'Lopez',
-      email: 'ana.lopez@gmail.com',
-      telefono: '+234567890',
-      detailsprice: [
-        { cantidad: 1, precioUnitario: 50, name: 'Linterna de Cabeza' },
-        { cantidad: 2, precioUnitario: 60, name: 'Chaqueta Impermeable' },
-        { cantidad: 1, precioUnitario: 30, name: 'Bate de beisbol' },
-        { cantidad: 1, precioUnitario: 25, name: 'Gorra UV' },
-        { cantidad: 3, precioUnitario: 20, name: 'Guantes de Escalada' },
-      ],
-      totalPrice: 255,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '19/8/2024',
-      status: 'Despachado',
-      nombre: 'Carlos',
-      apellido: 'Ramirez',
-      email: 'carlos.ramirez@gmail.com',
-      telefono: '+345678901',
-      detailsprice: [
-        { cantidad: 1, precioUnitario: 70, name: 'Cuerda de Escalada' },
-        { cantidad: 2, precioUnitario: 50, name: 'Piolet de Hielo' },
-        { cantidad: 1, precioUnitario: 85, name: 'Arnés de Escalada' },
-        { cantidad: 4, precioUnitario: 25, name: 'Mosquetón' },
-      ],
-      totalPrice: 330,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '18/8/2024',
-      status: 'Despachado',
-      nombre: 'Laura',
-      apellido: 'Martinez',
-      email: 'laura.martinez@gmail.com',
-      telefono: '+456789012',
-      detailsprice: [
-        { cantidad: 2, precioUnitario: 75, name: 'Bastones de Trekking' },
-        { cantidad: 1, precioUnitario: 100, name: 'Chaqueta de Gore-Tex' },
-        { cantidad: 3, precioUnitario: 40, name: 'Camisetas de Montaña' },
-        { cantidad: 1, precioUnitario: 150, name: 'Mochila de Hidratación' },
-      ],
-      totalPrice: 520,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '21/8/2024',
-      status: 'Entregado',
-      nombre: 'Miguel',
-      apellido: 'Fernandez',
-      email: 'miguel.fernandez@gmail.com',
-      telefono: '+567890123',
-      detailsprice: [
-        { cantidad: 1, precioUnitario: 200, name: 'GPS de Montaña' },
-        { cantidad: 1, precioUnitario: 90, name: 'Crampones' },
-        { cantidad: 2, precioUnitario: 120, name: 'Chaqueta Softshell' },
-        { cantidad: 2, precioUnitario: 30, name: 'Polainas de Nieve' },
-      ],
-      totalPrice: 590,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '15/8/2024',
-      status: 'En viaje',
-      nombre: 'Elena',
-      apellido: 'Gutierrez',
-      email: 'elena.gutierrez@gmail.com',
-      telefono: '+678901234',
-      detailsprice: [
-        { cantidad: 1, precioUnitario: 180, name: 'Botas de Montaña' },
-        { cantidad: 2, precioUnitario: 100, name: 'Camisetas Térmicas' },
-        { cantidad: 3, precioUnitario: 40, name: 'Calcetines de Lana' },
-        { cantidad: 1, precioUnitario: 250, name: 'Chaqueta de Invierno' },
-      ],
-      totalPrice: 710,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '16/8/2024',
-      status: 'Despachado',
-      nombre: 'Sofia',
-      apellido: 'Torres',
-      email: 'sofia.torres@gmail.com',
-      telefono: '+789012345',
-      detailsprice: [
+      id: '',
+      code: '',
+      fecha: '',
+      estado: '',
+      monto_total: '',
+      detalles: [
         {
-          cantidad: 1,
-          precioUnitario: 300,
-          name: 'Tienda de Campaña de 4 estaciones',
+          productoname: '',
+          cantidad: '',
+          subtotal: '',
+          precio: '',
+          description: '',
         },
-        {
-          cantidad: 2,
-          precioUnitario: 80,
-          name: 'Sacos de Dormir de Invierno',
-        },
-        { cantidad: 3, precioUnitario: 35, name: 'Cojines Inflables' },
-        { cantidad: 1, precioUnitario: 100, name: 'Esterilla Aislante' },
       ],
-      totalPrice: 700,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '12/8/2024',
-      status: 'Entregado',
-      nombre: 'Daniel',
-      apellido: 'Perez',
-      email: 'daniel.perez@gmail.com',
-      telefono: '+890123456',
-      detailsprice: [
-        { cantidad: 1, precioUnitario: 120, name: 'Raquetas de Nieve' },
-        { cantidad: 1, precioUnitario: 50, name: 'Gafas de Sol Polarizadas' },
-        { cantidad: 2, precioUnitario: 60, name: 'Camisetas Transpirables' },
-        { cantidad: 2, precioUnitario: 75, name: 'Pantalones Softshell' },
-      ],
-      totalPrice: 440,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '13/8/2024',
-      status: 'Entregado',
-      nombre: 'Gabriela',
-      apellido: 'Mendez',
-      email: 'gabriela.mendez@gmail.com',
-      telefono: '+901234567',
-      detailsprice: [
-        { cantidad: 1, precioUnitario: 250, name: 'Chaqueta de Plumas' },
-        { cantidad: 2, precioUnitario: 90, name: 'Pantalones de Invierno' },
-        { cantidad: 1, precioUnitario: 80, name: 'Botas Impermeables' },
-        { cantidad: 3, precioUnitario: 30, name: 'Guantes Térmicos' },
-      ],
-      totalPrice: 570,
-    },
-    {
-      code: 'AS3X-T1SA',
-      fecha: '8/8/2024',
-      status: 'Despachado',
-      nombre: 'Fernando',
-      apellido: 'Garcia',
-      email: 'fernando.garcia@gmail.com',
-      telefono: '+012345678',
-      detailsprice: [
-        {
-          cantidad: 1,
-          precioUnitario: 150,
-          name: 'Saco de Dormir de Invierno',
-        },
-        { cantidad: 1, precioUnitario: 70, name: 'Mochila de 70L' },
-        { cantidad: 2, precioUnitario: 40, name: 'Camisetas de Manga Larga' },
-        { cantidad: 2, precioUnitario: 45, name: 'Gorros de Lana' },
-      ],
-      totalPrice: 390,
+      userInfo: { nombre_usuario: '', correo: '', nombre: '', apellido: '' },
     },
   ];
+  constructor(private orderService: OrderService) {
+    this.getOrder();
+  }
+  getOrder() {
+    this.load = true;
+    this.orderService.getOrder().subscribe({
+      next: (data) => {
+        this.pedidos = data.dataPedidos;
+        this.load = false;
+      },
+      error: (err) => {
+        console.error({ err });
+      },
+    });
+  }
 }

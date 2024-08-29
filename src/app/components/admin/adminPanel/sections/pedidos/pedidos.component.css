@@ -10,6 +10,30 @@
   display: grid;
   align-items: start;
 }
+#boxTable {
+  overflow-y: auto;
+  max-height: 170px;
+}
+#boxTable::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+#boxTable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#boxTable::-webkit-scrollbar-thumb {
+  background-color: #4b4b4b;
+  border-radius: 10px;
+  border: 3px solid #4b4b4b;
+}
+
+#boxTable::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 .pedidoCard {
   background: #fff;
   border-radius: 8px;
@@ -49,6 +73,7 @@ tr td:last-child {
 #conteiner-detailsPrice {
   height: 100%;
   width: 100%;
+
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto auto auto;
@@ -108,4 +133,43 @@ tr td:last-child {
 }
 .entregado {
   background: #00a800;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 100px;
+  padding: 13px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0turn);
+  background: #454ade;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+.btn {
+  font-size: 15px;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  width: max-content;
+}
+.btnConfirm {
+  background: #454ade;
+}
+.btnDelete {
+  background: #d80202;
 }

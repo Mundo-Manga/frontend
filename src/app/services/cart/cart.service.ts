@@ -26,16 +26,7 @@ export class CartService {
       },
     });
   }
-  createOrder(cartData: any, montoTotal: number): Observable<any> {
-    return this.http.post(
-      `${this.url}/createOrder`,
-      {
-        cartData,
-        montoTotal,
-      },
-      { withCredentials: true }
-    );
-  }
+
   getCart(): Observable<any> {
     return this.http.post(
       `${this.url}/getCart`,
