@@ -1,0 +1,94 @@
+<app-header-shop></app-header-shop>
+<nav-shop></nav-shop>
+<div id="cantProductBox">
+  <div></div>
+</div>
+<div class="box" id="box-tableProducto" (scroll)="onScroll($event)">
+  <h3 style="padding: 10px 0; padding-left: 10px">
+    Productos
+    <svg
+      id="refreshIcon"
+      (click)="refreshProductList()"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-reload"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path
+        d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747"
+      />
+      <path d="M20 4v5h-5" />
+    </svg>
+  </h3>
+  @if (productList.length > 0) {
+
+  <table id="tableProducto-table">
+    <thead>
+      <tr>
+        <th id="thead-name">Nombre</th>
+        <th id="thead-price">Precio</th>
+        <th id="thead-categories">Descripción</th>
+        <th id="thead-stock">Stock</th>
+        <th id="thead-action"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (item of productList;track item.id){
+      <tr>
+        <td>{{ item.nombre }}</td>
+        <td style="width: 100px; display: flex; justify-content: space-between">
+          <span>$</span><span>{{ item.price }}</span>
+        </td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.stock }}</td>
+        <td>
+          <input
+            type="number"
+            min="1"
+            max="{{ item.stock }}"
+            [id]="'cantProduct_' + item.code_producto"
+            [defaultValue]="1"
+            style="width: 50px"
+          />
+          <button
+            class="btn btn-primary"
+            (click)="addCart(item.code_producto, item.nombre)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart-plus"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+              <path d="M12.5 17h-6.5v-14h-2" />
+              <path d="M6 5l14 1l-.86 6.017m-2.64 .983h-10.5" />
+              <path d="M16 19h6" />
+              <path d="M19 16v6" />
+            </svg>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  } @else {
+
+  <div style="text-align: center">No hay productos</div>
+  }
+</div>

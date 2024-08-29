@@ -69,7 +69,16 @@
         >Usuarios</a
       >
       <span class="navAdmin-stick"></span>
+      <a
+        [ngClass]="{
+          'navAdmin-link': true
+        }"
+        routerLink="/shop"
+        >Tienda</a
+      >
+      <span class="navAdmin-stick"></span>
     </div>
+    <button id="btn-Logout" (click)="logout()">Cerrar sesion</button>
   </nav>
   <div id="window">
     <router-outlet></router-outlet>

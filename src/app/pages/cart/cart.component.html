@@ -1,0 +1,105 @@
+<app-header-shop></app-header-shop>
+<a routerLink="/shop" id="linkShop"
+  >Shop
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path
+      d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z"
+    />
+    <path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg
+></a>
+<div class="box" id="box-tableProducto">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="30"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+      <path d="M17 17h-11v-14h-2" />
+      <path d="M6 5l14 1l-1 7h-13" />
+    </svg>
+    Carrito
+  </h3>
+  @if (detallesCarrito.length > 0) {
+  <table id="tableProducto-table">
+    <thead>
+      <tr>
+        <th id="thead-name">Nombre</th>
+        <th id="thead-categories">Descripción</th>
+        <th id="thead-price">Precio unitario</th>
+        <th id="thead-stock">Cantidad</th>
+        <th id="thead-stock">subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (item of detallesCarrito; track $index) {
+      <tr>
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.descripcion }}</td>
+        <td style="width: 100px; display: flex; justify-content: space-between">
+          <span>$</span><span>{{ item.precio }}</span>
+        </td>
+        <td>x{{ item.cant_producto }}</td>
+        <td>{{ item.subtotal }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteCart(item.id)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-trash"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M4 7l16 0" />
+              <path d="M10 11l0 6" />
+              <path d="M14 11l0 6" />
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            </svg>
+          </button>
+        </td>
+      </tr>
+
+      }
+    </tbody>
+  </table>
+  <h4>
+    <span>Total ${{ total }}</span>
+    <button (click)="createOrderCart()" id="btnCreateOrder">
+      Hacer pedido
+    </button>
+  </h4>
+  } @else {
+
+  <div style="text-align: center">No hay productos</div>
+  }
+</div>

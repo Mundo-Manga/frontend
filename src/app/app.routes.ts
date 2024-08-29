@@ -13,6 +13,9 @@ import { UnauthorizedPageComponent } from './pages/unauthorized-page/unauthorize
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { hasRoleGuard } from './guards/logged/has-rol.guard';
 import { verifyRoleGuard } from './guards/role/verify-role.guard';
+import { ShopComponent } from './pages/shop/shop.component';
+import { AccountComponent } from './pages/account/account.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -48,10 +51,19 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'productos',
+    path: 'shop',
     canActivate: [hasRoleGuard],
-    component: PanelAdminComponent,
-    children: [{ path: 'sad', component: UsuariosComponent }],
+    component: ShopComponent,
+  },
+  {
+    path: 'account',
+    canActivate: [hasRoleGuard],
+    component: AccountComponent,
+  },
+  {
+    path: 'cart',
+    canActivate: [hasRoleGuard],
+    component: CartComponent,
   },
   {
     path: 'unauthorized',

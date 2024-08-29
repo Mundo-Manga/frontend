@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
       this.authService.signUp(this.registerForm.value).subscribe({
         next: (data) => {
           this.registerForm.reset();
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/shop');
         },
         error: (error) => {
           if (error.error?.error === 'ExistingUserAndEmail') {

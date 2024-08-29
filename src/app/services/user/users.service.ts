@@ -13,4 +13,18 @@ export class UsersService {
       params: { page: indexPage },
     });
   }
+  logout(): Observable<any> {
+    return this.http.get(`${this.url}/logout`, {
+      withCredentials: true,
+    });
+  }
+  getRole(): Observable<any> {
+    return this.http.post(
+      `${this.url}/getRole`,
+      { h: 'f' },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }

@@ -4,6 +4,7 @@
   display: flex;
 }
 #navAdmin {
+  position: relative;
   width: 250px;
   height: 100%;
   background: #1f202b;
@@ -86,4 +87,17 @@
 }
 #icon-arrow.active {
   transform: translateY(-50%) rotate(180deg);
+}
+#btn-Logout {
+  position: absolute;
+  top: auto;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: solid 3px #d10606;
+  color: #d10606;
+  font-weight: 600;
+  width: max-content;
+  padding: 2px 5px;
 }

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: (data) => {
           this.loginForm.reset();
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/shop');
         },
         error: (error) => {
           if (error.error?.error === 'NonExistingUser') {
