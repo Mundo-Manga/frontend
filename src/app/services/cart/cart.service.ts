@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  private url = 'http://localhost:3000/api/cart';
+  private url = 'https://ecomerce-server-h4o0.onrender.com/api/cart';
 
   constructor(private http: HttpClient) {}
 

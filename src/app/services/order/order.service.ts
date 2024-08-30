@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class OrderService {
-  private url = 'http://localhost:3000/api/order';
+  private url = 'https://ecomerce-server-h4o0.onrender.com/api/order';
 
   constructor(private http: HttpClient) {}
   createOrder(cartData: any, montoTotal: number): Observable<any> {

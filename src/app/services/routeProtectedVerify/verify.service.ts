@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class VerifyService {
-  private url = 'http://localhost:3000/api/verify';
+  private url = 'https://ecomerce-server-h4o0.onrender.com/api/verify';
 
   constructor(private http: HttpClient) {}
   verifyLogged(): Observable<boolean> {

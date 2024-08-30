@@ -6,7 +6,7 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private url = 'http://localhost:3000/api/auth';
+  private url = 'https://ecomerce-server-h4o0.onrender.com/api/auth';
 
   constructor(private http: HttpClient) {}
 

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class UsersService {
-  private url = 'http://localhost:3000/api/user';
+  private url = 'https://ecomerce-server-h4o0.onrender.com/api/user';
   constructor(private http: HttpClient) {}
   getUsers(indexPage: number): Observable<any> {
     return this.http.get(`${this.url}/getUsers`, {
