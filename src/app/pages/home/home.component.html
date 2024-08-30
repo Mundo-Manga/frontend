@@ -1,42 +1,113 @@
-<section>
+<app-header-shop></app-header-shop>
+<nav><a id="btnLinkAuth" routerLink="/auth">Iniciar sesión</a></nav>
+<section id="carouselConteiner">
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="imagenes/imagen-persona-corriendo.jpg" class="d-block w-100" alt="running">
+        <img
+          src="imagenes/imagen-persona-corriendo.jpg"
+          class="d-block w-100"
+          alt="running"
+        />
       </div>
       <div class="carousel-item">
-        <img src="imagenes/escalada.jpg" class="d-block w-100" alt="escalada">
+        <img src="imagenes/escalada.jpg" class="d-block w-100" alt="escalada" />
       </div>
       <div class="carousel-item">
-        <img src="imagenes/ciclista.jpg" class="d-block w-100" alt="ciclista">
+        <img src="imagenes/ciclista.jpg" class="d-block w-100" alt="ciclista" />
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"
+    >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+    >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
 </section>
-<section>
-<div class="container" id="seccion-2">
-  <div class="row" id="row-1-seccion-2">
-    <div class="col-3"><img src="" alt="imágen de deporte"></div>
-    <div class="col-3"><img src="" alt="imágen de deporte"></div>
-    <div class="col-3"><img src="" alt="imágen de deporte"></div>
-    <div class="col-3"><img src="" alt="imágen de deporte"></div>
+
+<section id="aboutUs">
+  <h2>Sobre nosotros</h2>
+  <p>
+    Somos una empresa que nos encargamos y especializamos en vender los mejores
+    productos de buena calidad con un precio adecuado y justo, para poder
+    realizar diversos deportes al aire libre.
+  </p>
+</section>
+<section id="teamDeveloper">
+  <h2>Equipo de desarrollo de la pagina</h2>
+  <p>Esta página no pudo ser creada sin la ayuda de ellos</p>
+  <div id="conteinerMembers">
+    <div class="memberCard">
+      <img src="/imagenes/Profile/Leonel.jpeg" alt="Leonel" class="profile" />
+      <div>
+        <h4>Leonel Gonzalez</h4>
+        <ul>
+          <li>Lider</li>
+          <li>Full stack developer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="memberCard">
+      <img src="/imagenes/Profile/Santi.png" alt="Santiago" class="profile" />
+      <div>
+        <h4>Santiago Bertero</h4>
+        <ul>
+          <li>Analista funcional</li>
+        </ul>
+      </div>
+    </div>
+    <div class="memberCard">
+      <img src="/imagenes/Profile/Tarek.png" alt="Tarek" class="profile" />
+      <div>
+        <h4>Tarek Daher</h4>
+        <ul>
+          <li>Front End Developer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="memberCard">
+      <img src="/imagenes/Profile/Fede.png" alt="Federico" class="profile" />
+      <div>
+        <h4>Federico trifunovic</h4>
+        <ul>
+          <li>Analista funcional</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="row" id="row-2-seccion-2">
-    <div class="col-6"><img src="" alt="imágen de deporte"></div>
-    <div class="col-6"><img src="" alt="imágen de deporte"></div>
-  </div>
-</div>
 </section>

@@ -1,19 +1,96 @@
-img{
-    max-height: 300px;
+img {
+  max-height: 300px;
 }
 
-section{
-    background-color: burlywood;
-    
+#seccion-2 {
+  text-align: center;
+  padding-top: 50px;
 }
 
-#seccion-2{
-    text-align: center;
-    padding-top: 50px;
+#row-2-seccion-2 {
+  padding-top: 20px;
 }
-
-#row-2-seccion-2{
-    padding-top: 20px;
+.carousel-control-next {
+  left: auto;
+}
+.carousel-indicators {
+  top: auto;
+}
+nav {
+  width: 100%;
+  padding: 10px 20px;
+  background: #454ade;
+  text-align: end;
+}
+#carouselConteiner {
+  background: #999cf8;
+}
+#btnLinkAuth {
+  color: #fff;
+  background: #ffffff27;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+img {
+  object-fit: contain;
+}
+#teamDeveloper {
+  background: #ececec;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 40px;
+  & h2 {
+    color: #454ade;
+    font-size: 40px;
+  }
+}
+#conteinerMembers {
+  width: 60%;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+ul {
+  list-style-position: inside;
+  text-align: start;
+  padding-left: 0;
+}
+li {
+  text-indent: 5px;
+}
+.profile {
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  object-fit: cover;
+}
+.memberCard {
+  padding: 10px;
+  display: flex;
+  gap: 30px;
+  background: #fff;
+  border-radius: 8px;
+  & h4 {
+    text-align: start;
+    color: #454ade;
+  }
+}
+#aboutUs {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 40px;
+  & h2 {
+    color: #454ade;
+    font-size: 40px;
+  }
+  & p {
+    margin: auto;
+    width: 600px;
+  }
 }
 /*
 #first-section{
